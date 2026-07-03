@@ -1,0 +1,56 @@
+{
+  "version": 2,
+  "name": "x402 Notary",
+  "description": "Cryptographic receipts for AI inference \u2014 signed Ed25519 attestations, sha256 content hashes, and Merkle chain anchors via x402 USDC micropayments. Free verification.",
+  "resourceServerUrl": "https://notary.forgemesh.io",
+  "network": "eip155:8453",
+  "payTo": "0x814EfE784709f5bF8dF47735D87602B01030e5D2",
+  "endpoints": [
+    {
+      "method": "POST",
+      "path": "/api/notarize",
+      "price": "$0.001",
+      "description": "Notarize one AI inference \u2014 returns signed attestation, content hash, receipt token, anchor status",
+      "params": {
+        "prompt": {
+          "type": "string",
+          "required": true,
+          "description": "Exact prompt sent to the model"
+        },
+        "response": {
+          "type": "string",
+          "required": true,
+          "description": "Exact model output"
+        },
+        "model_id": {
+          "type": "string",
+          "required": true,
+          "description": "Model identifier, e.g. openai/gpt-5"
+        },
+        "client_timestamp": {
+          "type": "string",
+          "required": false,
+          "description": "ISO-8601 inference time (hashed if present)"
+        },
+        "metadata": {
+          "type": "object",
+          "required": false,
+          "description": "Caller metadata <= 4 KB, private"
+        }
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/api/notarize/batch",
+      "price": "$0.005",
+      "description": "Notarize 1-20 inferences in one call",
+      "params": {
+        "records": {
+          "type": "array",
+          "required": true,
+          "description": "Array of 1-20 notarization records"
+        }
+      }
+    }
+  ]
+}
