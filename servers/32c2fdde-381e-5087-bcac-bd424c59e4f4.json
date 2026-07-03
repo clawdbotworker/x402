@@ -1,0 +1,839 @@
+{
+  "version": 2,
+  "x402Version": 2,
+  "name": "ForgeMesh Travel Agent",
+  "service": "ForgeMesh Travel Agent",
+  "description": "Source-hidden travel planning awareness for agents.",
+  "resourceServerUrl": "https://travel-agent.forgemesh.io",
+  "baseUrl": "https://travel-agent.forgemesh.io",
+  "network": "eip155:8453",
+  "payTo": "0x7F7C9bfF1DDF2817641740962A9872e6421eBBFc",
+  "forgemeshNetwork": {
+    "publisher": {
+      "name": "ForgeMesh Labs",
+      "url": "https://forgemesh.io",
+      "relationship": "publisher"
+    },
+    "currentService": {
+      "name": "ForgeMesh Travel Agent",
+      "url": "https://travel-agent.forgemesh.io",
+      "relationship": "current_x402_resource_server"
+    },
+    "relatedServices": [
+      {
+        "name": "ForgeMesh x402 Services",
+        "url": "https://x402.coinopai.com",
+        "relationship": "sibling_x402_service_index",
+        "description": "Related ForgeMesh paid agent endpoints and x402 service examples."
+      },
+      {
+        "name": "CoinOpAI",
+        "url": "https://coinopai.com",
+        "relationship": "agent_monetization_hub",
+        "description": "ForgeMesh agent monetization and MCP/x402 product surface."
+      },
+      {
+        "name": "Kronos Market Intelligence",
+        "url": "https://x402.coinopai.com",
+        "relationship": "sibling_paid_endpoint_family",
+        "description": "Related x402 market intelligence endpoints from ForgeMesh."
+      },
+      {
+        "name": "x402 Image Generation",
+        "url": "https://x402.coinopai.com",
+        "relationship": "sibling_paid_endpoint_family",
+        "description": "Related ForgeMesh x402 creative generation endpoint family."
+      },
+      {
+        "name": "Travel Agent MCP",
+        "url": "https://github.com/forgemeshlabs/travel-agent-mcp",
+        "relationship": "mcp_client_package",
+        "description": "MCP package that exposes local travel tools and prepares x402 handoffs to this resource server."
+      },
+      {
+        "name": "Disruption Intelligence MCP",
+        "url": "https://github.com/forgemeshlabs/disruption-intelligence-mcp",
+        "relationship": "related_mcp_product",
+        "description": "Related ForgeMesh MCP wrapper for commercial disruption signals."
+      },
+      {
+        "name": "ForgeMesh ImageGen MCP",
+        "url": "https://github.com/forgemeshlabs/imagegen-mcp",
+        "relationship": "related_mcp_product",
+        "description": "Related ForgeMesh MCP wrapper for paid image generation and cleanup."
+      }
+    ]
+  },
+  "backlinks": [
+    {
+      "name": "ForgeMesh x402 Services",
+      "url": "https://x402.coinopai.com",
+      "relationship": "sibling_x402_service_index",
+      "description": "Related ForgeMesh paid agent endpoints and x402 service examples."
+    },
+    {
+      "name": "CoinOpAI",
+      "url": "https://coinopai.com",
+      "relationship": "agent_monetization_hub",
+      "description": "ForgeMesh agent monetization and MCP/x402 product surface."
+    },
+    {
+      "name": "Kronos Market Intelligence",
+      "url": "https://x402.coinopai.com",
+      "relationship": "sibling_paid_endpoint_family",
+      "description": "Related x402 market intelligence endpoints from ForgeMesh."
+    },
+    {
+      "name": "x402 Image Generation",
+      "url": "https://x402.coinopai.com",
+      "relationship": "sibling_paid_endpoint_family",
+      "description": "Related ForgeMesh x402 creative generation endpoint family."
+    },
+    {
+      "name": "Travel Agent MCP",
+      "url": "https://github.com/forgemeshlabs/travel-agent-mcp",
+      "relationship": "mcp_client_package",
+      "description": "MCP package that exposes local travel tools and prepares x402 handoffs to this resource server."
+    },
+    {
+      "name": "Disruption Intelligence MCP",
+      "url": "https://github.com/forgemeshlabs/disruption-intelligence-mcp",
+      "relationship": "related_mcp_product",
+      "description": "Related ForgeMesh MCP wrapper for commercial disruption signals."
+    },
+    {
+      "name": "ForgeMesh ImageGen MCP",
+      "url": "https://github.com/forgemeshlabs/imagegen-mcp",
+      "relationship": "related_mcp_product",
+      "description": "Related ForgeMesh MCP wrapper for paid image generation and cleanup."
+    }
+  ],
+  "paymentSchemes": {
+    "exact": {
+      "status": "live",
+      "reason": "Current travel endpoints have fixed prices."
+    },
+    "upto": {
+      "status": "planned_if_usage_based_pricing_is_added",
+      "reason": "Useful for future dynamic/usage-priced endpoints where the final charge is below a client-approved maximum."
+    },
+    "batch-settlement": {
+      "status": "planned_if_high_volume_repeat_micropayments_arrive",
+      "reason": "Useful later for repeated micropayments, not necessary for the current low-volume fixed-price launch surface."
+    }
+  },
+  "extensions": {
+    "bazaar": {
+      "status": "live",
+      "purpose": "Agent marketplace discovery with input examples, input schemas, output examples, and output schemas on live paid routes."
+    },
+    "payment-identifier": {
+      "status": "live",
+      "required": false,
+      "purpose": "Optional idempotency marker for clients that want retry-safe logical requests."
+    },
+    "offer-receipt": {
+      "status": "live",
+      "includeTxHash": false,
+      "offerValiditySeconds": 300,
+      "purpose": "Signed offers in 402 responses and signed receipts after successful settlement when a service signing key is configured."
+    },
+    "builder-code": {
+      "status": "live",
+      "code": "bc_4ypyymtf",
+      "purpose": "ERC-8021 attribution for x402 settlement calldata after a Base builder code is minted and configured."
+    },
+    "sign-in-with-x": {
+      "status": "not_needed_for_one_shot_travel_outputs"
+    },
+    "eip2612-gas-sponsoring": {
+      "status": "not_exported_by_installed_extensions_package"
+    },
+    "erc20-approval-gas-sponsoring": {
+      "status": "not_exported_by_installed_extensions_package"
+    }
+  },
+  "categories": [
+    {
+      "id": "day_trip",
+      "name": "Day trips",
+      "status": "live_paid",
+      "summary": "Shape a planned or spur-of-the-moment day trip with timing, transit-aware route strategy, transportation options, weather fit, food stops, backup options, and things to consider before deciding.",
+      "endpoint": "/api/day-trip-plan",
+      "free": false,
+      "price": "$0.10",
+      "input_context": {
+        "useful": [
+          "origin",
+          "destination",
+          "date",
+          "time_window",
+          "transport"
+        ]
+      }
+    }
+  ],
+  "endpoints": [
+    {
+      "path": "/api/categories",
+      "method": "GET",
+      "description": "Free category and input-context discovery.",
+      "payment": {
+        "required": false
+      },
+      "params": {}
+    },
+    {
+      "path": "/api/currency-exchange",
+      "method": "GET",
+      "description": "Free exchange-rate reference utility for simple currency conversion.",
+      "available": true,
+      "status": "live",
+      "payment": {
+        "required": false
+      },
+      "params": {
+        "home_currency": {
+          "type": "string",
+          "required": false
+        },
+        "destination_currency": {
+          "type": "string",
+          "required": false
+        },
+        "amount": {
+          "type": "number",
+          "required": false
+        },
+        "destination": {
+          "type": "string",
+          "required": false
+        },
+        "spending_categories": {
+          "type": "string",
+          "required": false
+        }
+      }
+    },
+    {
+      "path": "/api/request-coverage",
+      "method": "GET",
+      "description": "Free town/source coverage request endpoint for future creator-ready emerging local signals, local rituals, and free local experiences.",
+      "available": true,
+      "status": "live",
+      "payment": {
+        "required": false
+      },
+      "params": {
+        "town": {
+          "type": "string",
+          "required": false
+        },
+        "location": {
+          "type": "string",
+          "required": false
+        },
+        "destination": {
+          "type": "string",
+          "required": false
+        },
+        "state": {
+          "type": "string",
+          "required": false
+        },
+        "country": {
+          "type": "string",
+          "required": false
+        },
+        "signal_types": {
+          "type": "string",
+          "required": false
+        },
+        "source_links": {
+          "type": "string",
+          "required": false
+        },
+        "creator_angle": {
+          "type": "string",
+          "required": false
+        },
+        "contact": {
+          "type": "string",
+          "required": false
+        },
+        "recheck_days": {
+          "type": "number",
+          "required": false
+        }
+      }
+    },
+    {
+      "path": "/api/transit-providers",
+      "method": "GET",
+      "description": "Paid location-filtered mobility options finder for transit-aware trip planning.",
+      "available": true,
+      "status": "live",
+      "payment": {
+        "required": true,
+        "status": "live",
+        "price": "$0.01",
+        "currency": "USDC",
+        "network": "eip155:8453",
+        "payTo": "0x7F7C9bfF1DDF2817641740962A9872e6421eBBFc",
+        "scheme": "exact"
+      },
+      "params": {
+        "location": {
+          "type": "string",
+          "required": false
+        },
+        "transportation_type": {
+          "type": "string",
+          "required": false
+        },
+        "trip_style": {
+          "type": "string",
+          "required": false
+        },
+        "origin": {
+          "type": "string",
+          "required": false
+        },
+        "destination": {
+          "type": "string",
+          "required": false
+        }
+      }
+    },
+    {
+      "path": "/api/day-trip-plan",
+      "method": "GET",
+      "price": "$0.10",
+      "description": "Paid day trip plan planning awareness.",
+      "available": true,
+      "status": "live",
+      "payment": {
+        "required": true,
+        "status": "live",
+        "price": "$0.10",
+        "currency": "USDC",
+        "network": "eip155:8453",
+        "payTo": "0x7F7C9bfF1DDF2817641740962A9872e6421eBBFc",
+        "scheme": "exact"
+      },
+      "extensions": {
+        "bazaar": {
+          "status": "live",
+          "purpose": "Agent marketplace discovery with input examples, input schemas, output examples, and output schemas on live paid routes."
+        },
+        "payment-identifier": {
+          "status": "live",
+          "required": false,
+          "purpose": "Optional idempotency marker for clients that want retry-safe logical requests."
+        },
+        "offer-receipt": {
+          "status": "live",
+          "includeTxHash": false,
+          "offerValiditySeconds": 300,
+          "purpose": "Signed offers in 402 responses and signed receipts after successful settlement when a service signing key is configured."
+        },
+        "builder-code": {
+          "status": "live",
+          "code": "bc_4ypyymtf",
+          "purpose": "ERC-8021 attribution for x402 settlement calldata after a Base builder code is minted and configured."
+        },
+        "sign-in-with-x": {
+          "status": "not_needed_for_one_shot_travel_outputs"
+        },
+        "eip2612-gas-sponsoring": {
+          "status": "not_exported_by_installed_extensions_package"
+        },
+        "erc20-approval-gas-sponsoring": {
+          "status": "not_exported_by_installed_extensions_package"
+        }
+      },
+      "params": {
+        "origin": {
+          "type": "string",
+          "required": false
+        },
+        "destination": {
+          "type": "string",
+          "required": false
+        },
+        "radius_miles": {
+          "type": "string",
+          "required": false
+        },
+        "max_distance_or_travel_time": {
+          "type": "string",
+          "required": false
+        },
+        "date": {
+          "type": "string",
+          "required": false
+        },
+        "interests": {
+          "type": "string",
+          "required": false
+        },
+        "budget": {
+          "type": "string",
+          "required": false
+        }
+      }
+    },
+    {
+      "path": "/api/weekend-getaway",
+      "method": "GET",
+      "price": "$0.25",
+      "description": "Paid weekend getaway planning awareness.",
+      "available": true,
+      "status": "live",
+      "payment": {
+        "required": true,
+        "status": "live",
+        "price": "$0.25",
+        "currency": "USDC",
+        "network": "eip155:8453",
+        "payTo": "0x7F7C9bfF1DDF2817641740962A9872e6421eBBFc",
+        "scheme": "exact"
+      },
+      "extensions": {
+        "bazaar": {
+          "status": "live",
+          "purpose": "Agent marketplace discovery with input examples, input schemas, output examples, and output schemas on live paid routes."
+        },
+        "payment-identifier": {
+          "status": "live",
+          "required": false,
+          "purpose": "Optional idempotency marker for clients that want retry-safe logical requests."
+        },
+        "offer-receipt": {
+          "status": "live",
+          "includeTxHash": false,
+          "offerValiditySeconds": 300,
+          "purpose": "Signed offers in 402 responses and signed receipts after successful settlement when a service signing key is configured."
+        },
+        "builder-code": {
+          "status": "live",
+          "code": "bc_4ypyymtf",
+          "purpose": "ERC-8021 attribution for x402 settlement calldata after a Base builder code is minted and configured."
+        },
+        "sign-in-with-x": {
+          "status": "not_needed_for_one_shot_travel_outputs"
+        },
+        "eip2612-gas-sponsoring": {
+          "status": "not_exported_by_installed_extensions_package"
+        },
+        "erc20-approval-gas-sponsoring": {
+          "status": "not_exported_by_installed_extensions_package"
+        }
+      },
+      "params": {
+        "origin": {
+          "type": "string",
+          "required": false
+        },
+        "destination": {
+          "type": "string",
+          "required": false
+        },
+        "start_date": {
+          "type": "string",
+          "required": false
+        },
+        "end_date": {
+          "type": "string",
+          "required": false
+        },
+        "transportation_modes": {
+          "type": "string",
+          "required": false
+        },
+        "max_distance_or_travel_time": {
+          "type": "string",
+          "required": false
+        },
+        "budget": {
+          "type": "string",
+          "required": false
+        },
+        "lodging_style": {
+          "type": "string",
+          "required": false
+        },
+        "trip_style": {
+          "type": "string",
+          "required": false
+        }
+      }
+    },
+    {
+      "path": "/api/event-trip-plan",
+      "method": "GET",
+      "price": "$0.25",
+      "description": "Paid event trip plan planning awareness.",
+      "available": false,
+      "status": "planned",
+      "payment": {
+        "required": true,
+        "status": "planned",
+        "price": "$0.25",
+        "currency": "USDC",
+        "network": "eip155:8453",
+        "payTo": "0x7F7C9bfF1DDF2817641740962A9872e6421eBBFc",
+        "scheme": "exact"
+      },
+      "extensions": {},
+      "params": {
+        "event_name": {
+          "type": "string",
+          "required": false
+        },
+        "event_location": {
+          "type": "string",
+          "required": false
+        },
+        "event_dates": {
+          "type": "string",
+          "required": false
+        },
+        "origin": {
+          "type": "string",
+          "required": false
+        },
+        "transportation_modes": {
+          "type": "string",
+          "required": false
+        },
+        "budget": {
+          "type": "string",
+          "required": false
+        },
+        "event_style": {
+          "type": "string",
+          "required": false
+        },
+        "must_be_there_times": {
+          "type": "string",
+          "required": false
+        }
+      }
+    },
+    {
+      "path": "/api/weather-aware-plan",
+      "method": "GET",
+      "price": "$0.03",
+      "description": "Paid weather aware plan planning awareness.",
+      "available": true,
+      "status": "live",
+      "payment": {
+        "required": true,
+        "status": "live",
+        "price": "$0.03",
+        "currency": "USDC",
+        "network": "eip155:8453",
+        "payTo": "0x7F7C9bfF1DDF2817641740962A9872e6421eBBFc",
+        "scheme": "exact"
+      },
+      "extensions": {
+        "bazaar": {
+          "status": "live",
+          "purpose": "Agent marketplace discovery with input examples, input schemas, output examples, and output schemas on live paid routes."
+        },
+        "payment-identifier": {
+          "status": "live",
+          "required": false,
+          "purpose": "Optional idempotency marker for clients that want retry-safe logical requests."
+        },
+        "offer-receipt": {
+          "status": "live",
+          "includeTxHash": false,
+          "offerValiditySeconds": 300,
+          "purpose": "Signed offers in 402 responses and signed receipts after successful settlement when a service signing key is configured."
+        },
+        "builder-code": {
+          "status": "live",
+          "code": "bc_4ypyymtf",
+          "purpose": "ERC-8021 attribution for x402 settlement calldata after a Base builder code is minted and configured."
+        },
+        "sign-in-with-x": {
+          "status": "not_needed_for_one_shot_travel_outputs"
+        },
+        "eip2612-gas-sponsoring": {
+          "status": "not_exported_by_installed_extensions_package"
+        },
+        "erc20-approval-gas-sponsoring": {
+          "status": "not_exported_by_installed_extensions_package"
+        }
+      },
+      "params": {
+        "destination": {
+          "type": "string",
+          "required": false
+        },
+        "lat": {
+          "type": "string",
+          "required": false
+        },
+        "lon": {
+          "type": "string",
+          "required": false
+        },
+        "date": {
+          "type": "string",
+          "required": false
+        },
+        "plan_type": {
+          "type": "string",
+          "required": false
+        }
+      }
+    },
+    {
+      "path": "/api/creator-experiences",
+      "method": "GET",
+      "price": "$0.25",
+      "description": "Paid creator experiences planning awareness.",
+      "available": true,
+      "status": "live",
+      "payment": {
+        "required": true,
+        "status": "live",
+        "price": "$0.25",
+        "currency": "USDC",
+        "network": "eip155:8453",
+        "payTo": "0x7F7C9bfF1DDF2817641740962A9872e6421eBBFc",
+        "scheme": "exact"
+      },
+      "extensions": {
+        "bazaar": {
+          "status": "live",
+          "purpose": "Agent marketplace discovery with input examples, input schemas, output examples, and output schemas on live paid routes."
+        },
+        "payment-identifier": {
+          "status": "live",
+          "required": false,
+          "purpose": "Optional idempotency marker for clients that want retry-safe logical requests."
+        },
+        "offer-receipt": {
+          "status": "live",
+          "includeTxHash": false,
+          "offerValiditySeconds": 300,
+          "purpose": "Signed offers in 402 responses and signed receipts after successful settlement when a service signing key is configured."
+        },
+        "builder-code": {
+          "status": "live",
+          "code": "bc_4ypyymtf",
+          "purpose": "ERC-8021 attribution for x402 settlement calldata after a Base builder code is minted and configured."
+        },
+        "sign-in-with-x": {
+          "status": "not_needed_for_one_shot_travel_outputs"
+        },
+        "eip2612-gas-sponsoring": {
+          "status": "not_exported_by_installed_extensions_package"
+        },
+        "erc20-approval-gas-sponsoring": {
+          "status": "not_exported_by_installed_extensions_package"
+        }
+      },
+      "params": {
+        "destination": {
+          "type": "string",
+          "required": false
+        },
+        "trip_length": {
+          "type": "string",
+          "required": false
+        },
+        "content_style": {
+          "type": "string",
+          "required": false
+        },
+        "budget": {
+          "type": "string",
+          "required": false
+        },
+        "audience": {
+          "type": "string",
+          "required": false
+        },
+        "season": {
+          "type": "string",
+          "required": false
+        },
+        "emerging_local_signals": {
+          "type": "string",
+          "required": false
+        }
+      }
+    },
+    {
+      "path": "/api/emerging-local-signals",
+      "method": "GET",
+      "price": "$0.05",
+      "description": "Paid emerging local signals planning awareness.",
+      "available": false,
+      "status": "planned",
+      "payment": {
+        "required": true,
+        "status": "planned",
+        "price": "$0.05",
+        "currency": "USDC",
+        "network": "eip155:8453",
+        "payTo": "0x7F7C9bfF1DDF2817641740962A9872e6421eBBFc",
+        "scheme": "exact"
+      },
+      "extensions": {},
+      "params": {
+        "location": {
+          "type": "string",
+          "required": false
+        },
+        "destination": {
+          "type": "string",
+          "required": false
+        },
+        "signal_types": {
+          "type": "string",
+          "required": false
+        },
+        "lookback_days": {
+          "type": "string",
+          "required": false
+        },
+        "business_type": {
+          "type": "string",
+          "required": false
+        },
+        "neighborhood": {
+          "type": "string",
+          "required": false
+        },
+        "content_style": {
+          "type": "string",
+          "required": false
+        }
+      }
+    },
+    {
+      "path": "/api/trip-price-guidance",
+      "method": "GET",
+      "price": "$0.10",
+      "description": "Paid trip price guidance planning awareness.",
+      "available": false,
+      "status": "planned",
+      "payment": {
+        "required": true,
+        "status": "planned",
+        "price": "$0.10",
+        "currency": "USDC",
+        "network": "eip155:8453",
+        "payTo": "0x7F7C9bfF1DDF2817641740962A9872e6421eBBFc",
+        "scheme": "exact"
+      },
+      "extensions": {},
+      "params": {
+        "origin": {
+          "type": "string",
+          "required": false
+        },
+        "destination": {
+          "type": "string",
+          "required": false
+        },
+        "departure_at": {
+          "type": "string",
+          "required": false
+        },
+        "return_at": {
+          "type": "string",
+          "required": false
+        },
+        "currency": {
+          "type": "string",
+          "required": false
+        },
+        "market": {
+          "type": "string",
+          "required": false
+        }
+      }
+    },
+    {
+      "path": "/api/travel-pulse",
+      "method": "GET",
+      "price": "$0.01",
+      "description": "Paid travel pulse planning awareness.",
+      "available": true,
+      "status": "live",
+      "payment": {
+        "required": true,
+        "status": "live",
+        "price": "$0.01",
+        "currency": "USDC",
+        "network": "eip155:8453",
+        "payTo": "0x7F7C9bfF1DDF2817641740962A9872e6421eBBFc",
+        "scheme": "exact"
+      },
+      "extensions": {
+        "bazaar": {
+          "status": "live",
+          "purpose": "Agent marketplace discovery with input examples, input schemas, output examples, and output schemas on live paid routes."
+        },
+        "payment-identifier": {
+          "status": "live",
+          "required": false,
+          "purpose": "Optional idempotency marker for clients that want retry-safe logical requests."
+        },
+        "offer-receipt": {
+          "status": "live",
+          "includeTxHash": false,
+          "offerValiditySeconds": 300,
+          "purpose": "Signed offers in 402 responses and signed receipts after successful settlement when a service signing key is configured."
+        },
+        "builder-code": {
+          "status": "live",
+          "code": "bc_4ypyymtf",
+          "purpose": "ERC-8021 attribution for x402 settlement calldata after a Base builder code is minted and configured."
+        },
+        "sign-in-with-x": {
+          "status": "not_needed_for_one_shot_travel_outputs"
+        },
+        "eip2612-gas-sponsoring": {
+          "status": "not_exported_by_installed_extensions_package"
+        },
+        "erc20-approval-gas-sponsoring": {
+          "status": "not_exported_by_installed_extensions_package"
+        }
+      },
+      "params": {
+        "lat": {
+          "type": "string",
+          "required": false
+        },
+        "lon": {
+          "type": "string",
+          "required": false
+        },
+        "radius_miles": {
+          "type": "string",
+          "required": false
+        },
+        "lookback_hours": {
+          "type": "string",
+          "required": false
+        },
+        "trip_phase": {
+          "type": "string",
+          "required": false
+        },
+        "water_site": {
+          "type": "string",
+          "required": false
+        }
+      }
+    }
+  ]
+}
