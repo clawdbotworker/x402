@@ -1,0 +1,254 @@
+{
+  "version": 2,
+  "name": "ForgeMesh Anomaly Tracker",
+  "description": "Multi-domain sequence anomaly detection \u2014 blockchain, mempool, stablecoin depeg, aviation, and GitHub. Uses NASA-derived sequence mining to detect unusual event patterns in real-time. Includes 5-second mempool polling and 1-minute depeg monitoring. Returns a story label + anomaly score.",
+  "resourceServerUrl": "https://anomaly.forgemesh.io",
+  "network": "eip155:8453",
+  "payTo": "0xE295B6641b32998537Ae0f8E61Babf729EAEd6E5",
+  "endpoints": [
+    {
+      "method": "POST",
+      "path": "/api/sequence-anomaly",
+      "price": "$0.05",
+      "description": "Score an event sequence window for anomalies. Returns a story label + score.",
+      "params": {
+        "domain": {
+          "type": "string",
+          "required": false,
+          "description": "Event domain (default: financial)"
+        },
+        "chain": {
+          "type": "string",
+          "required": false,
+          "description": "Blockchain: ethereum, base, or arbitrum (default: ethereum)"
+        },
+        "window": {
+          "type": "string",
+          "required": false,
+          "description": "Lookback window: 1h, 4h, 24h, or 168h (default: 24h)"
+        }
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/sequence-anomaly/status",
+      "price": "$0.01",
+      "description": "Model health and training stats per chain",
+      "params": {}
+    },
+    {
+      "method": "GET",
+      "path": "/api/whale-alerts",
+      "price": "$0.02",
+      "description": "Recent whale movements, CEX flows, bridge activity, and stablecoin mints/burns",
+      "params": {
+        "chain": {
+          "type": "string",
+          "required": false,
+          "description": "Blockchain: ethereum, base, or arbitrum (default: ethereum)"
+        },
+        "hours": {
+          "type": "string",
+          "required": false,
+          "description": "Lookback hours: 1-168 (default: 4)"
+        }
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/api/token-scan",
+      "price": "$0.03",
+      "description": "Best-effort anomaly scan for a single token; returns source status and coverage notes",
+      "params": {
+        "token": {
+          "type": "string",
+          "required": true,
+          "description": "Contract address (0x...) or symbol (usdt, usdc, weth, link, uni, pepe, arb, etc.)"
+        },
+        "chain": {
+          "type": "string",
+          "required": false,
+          "description": "Blockchain: ethereum, base, or arbitrum"
+        },
+        "window": {
+          "type": "string",
+          "required": false,
+          "description": "Lookback window: 1h, 4h, 24h, or 168h (default: 24h)"
+        }
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/api/address-scan",
+      "price": "$0.03",
+      "description": "Scan any wallet address for anomalous transaction patterns",
+      "params": {
+        "address": {
+          "type": "string",
+          "required": true,
+          "description": "Wallet address (0x...)"
+        },
+        "chain": {
+          "type": "string",
+          "required": false,
+          "description": "Blockchain: ethereum, base, or arbitrum"
+        },
+        "window": {
+          "type": "string",
+          "required": false,
+          "description": "Lookback window: 1h, 4h, 24h, or 168h"
+        }
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/api/nft-scan",
+      "price": "$0.03",
+      "description": "Best-effort NFT collection anomaly scan; returns source status and coverage notes",
+      "params": {
+        "token": {
+          "type": "string",
+          "required": true,
+          "description": "ERC-721/ERC-1155 contract address (0x...)"
+        },
+        "chain": {
+          "type": "string",
+          "required": false,
+          "description": "Blockchain: ethereum, base, or arbitrum"
+        },
+        "window": {
+          "type": "string",
+          "required": false,
+          "description": "Lookback window: 1h, 4h, 24h, or 168h"
+        }
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/api/defi-scan",
+      "price": "$0.03",
+      "description": "DeFi protocol anomaly \u2014 unusual flows through lending/DEX contracts",
+      "params": {
+        "protocol": {
+          "type": "string",
+          "required": true,
+          "description": "Protocol name (uniswap_v3, aave_v3, aave_v2, curve_3pool, compound_v3) or 0x address"
+        },
+        "chain": {
+          "type": "string",
+          "required": false,
+          "description": "Blockchain: ethereum, base, or arbitrum"
+        },
+        "window": {
+          "type": "string",
+          "required": false,
+          "description": "Lookback window: 1h, 4h, 24h, or 168h"
+        }
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/squawk-alerts",
+      "price": "$0.02",
+      "description": "Best-effort live sweep of active aviation emergency squawk codes; returns source status",
+      "params": {}
+    },
+    {
+      "method": "POST",
+      "path": "/api/flight-scan",
+      "price": "$0.03",
+      "description": "Airspace sequence anomaly for a named region",
+      "params": {
+        "region": {
+          "type": "string",
+          "required": false,
+          "description": "north_atlantic, europe, north_america, asia_pacific, middle_east, africa, or global"
+        }
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/trending-signal",
+      "price": "$0.02",
+      "description": "GitHub repos with anomalous star velocity \u2014 early signals before mainstream",
+      "params": {
+        "days": {
+          "type": "string",
+          "required": false,
+          "description": "Lookback days: 3, 7, 14, or 30 (default: 7)"
+        }
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/api/repo-scan",
+      "price": "$0.03",
+      "description": "Deep anomaly scan for a single GitHub repo \u2014 velocity, fork ratio, overnight explosion",
+      "params": {
+        "repo": {
+          "type": "string",
+          "required": true,
+          "description": "GitHub repo as owner/repo, e.g. vercel/ai"
+        }
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/api/github-watch",
+      "price": "$0.03",
+      "description": "Watch a repo's activity stream \u2014 commit bursts, force pushes, issue floods, merge rushes, bot takeovers",
+      "params": {
+        "repo": {
+          "type": "string",
+          "required": true,
+          "description": "GitHub repo as owner/repo, e.g. vercel/ai"
+        }
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/claude-feature-watch",
+      "price": "$0.02",
+      "description": "Watch Anthropic/Claude repos for recently merged features \u2014 SDK updates, Claude Code changes, new capabilities",
+      "params": {
+        "days": {
+          "type": "string",
+          "required": false,
+          "description": "Lookback days: 1-30 (default: 7)"
+        }
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/mempool-anomaly",
+      "price": "$0.01",
+      "description": "Real-time mempool anomaly \u2014 gas spikes, MEV signals, pending whale swaps, contract deploy bursts. Poll every 5 seconds.",
+      "params": {
+        "chain": {
+          "type": "string",
+          "required": false,
+          "description": "Blockchain: ethereum or base (default: ethereum)"
+        }
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/depeg-monitor",
+      "price": "$0.01",
+      "description": "Real-time stablecoin depeg detector \u2014 USDC/USDT/DAI price deviations, spread analysis. Poll every 1 minute.",
+      "params": {
+        "chain": {
+          "type": "string",
+          "required": false,
+          "description": "Blockchain: ethereum, base, or arbitrum (default: ethereum)"
+        }
+      }
+    }
+  ],
+  "extensions": [
+    "bazaar",
+    "payment-identifier",
+    "offer-receipt",
+    "builder-code"
+  ]
+}
