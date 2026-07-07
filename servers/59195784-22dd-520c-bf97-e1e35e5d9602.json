@@ -1,0 +1,71 @@
+{
+  "version": 2,
+  "name": "ForgeMesh x402 Ads",
+  "description": "Recommendations & discovery for x402 services. Typed recommendation items in 402 responses; agent demand intelligence paid per call.",
+  "resourceServerUrl": "https://ads.forgemesh.io",
+  "network": "eip155:8453",
+  "payTo": "0x65E02cB7Fee27630bB7d1a3ADd02Ef7Aa2D21701",
+  "endpoints": [
+    {
+      "method": "GET",
+      "path": "/api/network/stats",
+      "price": "$0.005",
+      "description": "Network totals + traffic classification split",
+      "params": {}
+    },
+    {
+      "method": "GET",
+      "path": "/api/intent/trends",
+      "price": "$0.01",
+      "description": "Top requested endpoints/categories by autonomous agents",
+      "params": {
+        "window": {
+          "type": "string",
+          "required": false,
+          "description": "24h|7d|30d|all"
+        },
+        "limit": {
+          "type": "integer",
+          "required": false,
+          "description": "max rows (100)"
+        }
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/intent/demand",
+      "price": "$0.02",
+      "description": "Demand depth for one category",
+      "params": {
+        "category": {
+          "type": "string",
+          "required": true,
+          "description": "category slug"
+        },
+        "window": {
+          "type": "string",
+          "required": false,
+          "description": "24h|7d|30d|all"
+        }
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/intent/report",
+      "price": "$0.05",
+      "description": "Why-agents-didn't-buy funnel report for one service (free for publishers on their own services via x-publisher-key)",
+      "params": {
+        "service": {
+          "type": "string",
+          "required": true,
+          "description": "service id"
+        },
+        "window": {
+          "type": "string",
+          "required": false,
+          "description": "24h|7d|30d|all"
+        }
+      }
+    }
+  ]
+}
